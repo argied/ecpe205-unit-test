@@ -1,5 +1,10 @@
 package com.ecpe205;
 
+/*github link: https://github.com/argied/ecpe205-unit-test
+* SUBMITTED BY: DONIO, ARGIE C.
+*               ENCE2A
+* */
+
 import java.util.Arrays;
 
 public class Calculator {
@@ -76,3 +81,5 @@ public class Calculator {
     }
 
 }
+
+
