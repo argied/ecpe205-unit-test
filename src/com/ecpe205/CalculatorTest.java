@@ -5,9 +5,11 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CalculatorTest {
     Calculator calc;
@@ -64,11 +66,52 @@ class CalculatorTest {
         );
     }
 
+
+
+
+    @ParameterizedTest
+    @MethodSource("useBaseXPowerY")
+    void shouldSolveExponent(double a, double b) {//testing for exponent() method
+        assertEquals(Math.pow(a,b), calc.exponent(a, b));
+    }
+
+    static Stream<Arguments> useBaseXPowerY () {
+        return Stream.of(
+                Arguments.of(1,2),
+                Arguments.of(4,6),
+                Arguments.of(2,7),
+                Arguments.of(3,7),
+                Arguments.of(3,0)
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,3,4,5})
+    void shouldSolveFactorial(int n) {//testing for factorial() method
+        assertEquals(24, calc.factorial(n));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"reviver","redivider", "argie", "deified", "racecar" })
+    void shouldKnowIfStringIsPalindrome(String n) {//testing for isPalindrome() method
+        assertEquals(true, calc.isPalindrome(n));
+    }
+
+    @ParameterizedTest
+    @MethodSource("arrayOfIntegerSets")
+    void shouldSortArray(int [] array){//testing for bubbleSort() method
+        assertEquals(calc.shellSort(array), calc.bubbleSort(array));
+    }//I just compared the ascending sorting of bubbleSort and shellSort
+
     static Stream<Arguments> arrayOfIntegerSets () {
         return Stream.of(
                 Arguments.of(new int[]{1,2,3,4,1}),
                 Arguments.of(new int[]{7,1,5,4,1}),
-                Arguments.of(new int[]{7,2,8,3,4})
+                Arguments.of(new int[]{4,2,0,2,4}),
+                Arguments.of(new int[]{7,2,8,1,2}),
+                Arguments.of(new int[]{9,0,5,3,4})
+
         );
     }
+
 }
