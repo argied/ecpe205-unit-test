@@ -35,13 +35,11 @@ public class Calculator {
     //create a method that checks if a given string is a palindrome
     //use parameterizedTest - 5 values to test
 
-    static boolean isPalindrome(String str)
-    {
+    static boolean isPalindrome(String str) {
         String OriginalString = str;
         int i = 0, j = str.length() - 1;
         while (i < j) {
-            if (str.charAt(i) != str.charAt(j))
-                return false;
+            if (str.charAt(i) != str.charAt(j)) return false;
             i++;
             j--;
         }
@@ -55,9 +53,7 @@ public class Calculator {
     static String bubbleSort(int[] array) {
         int size = array.length;
         for (int i = 0; i < size - 1; i++)
-
             for (int j = 0; j < size - i - 1; j++)
-
                 if (array[j] > array[j + 1]) {
                     int temp = array[j];
                     array[j] = array[j + 1];
